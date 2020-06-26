@@ -1,0 +1,24 @@
+#!/bin/bash
+
+rm -fv $PWD/rootfs/main
+echo "-------------"
+go build main.go
+retval=$?
+#echo $retval
+
+echo
+echo "-------------"
+
+if [ $retval -ne 0 ] 
+then
+    echo "Error \$retval: $retval"
+    exit 2
+fi
+
+
+#docker rmi one:latest
+docker build -t portchecker_expoerter:latest .
+
+docker run --rm -t -e HOST_IP="192.168.88.2" -e WAS_INSTANCE="cust_was_tmp" -p 9800:9800 portchecker_expoerter:latest
+
+exit 0
