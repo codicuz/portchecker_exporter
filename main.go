@@ -64,7 +64,25 @@ func main() {
             Name: "check9043port_" + *wasInstance,
             Help: "Check 9043 WAS console port",
         })
-	prometheus.MustRegister(check9043port)
+    prometheus.MustRegister(check9043port)
+    
+    check9044port := prometheus.NewGauge (
+        prometheus.GaugeOpts {
+            Namespace: namespace,
+            Subsystem: exporter,
+            Name: "check9044port_" + *wasInstance,
+            Help: "Check 9044 WAS console port",
+        })
+    prometheus.MustRegister(check9044port)
+    
+    check9045port := prometheus.NewGauge (
+        prometheus.GaugeOpts {
+            Namespace: namespace,
+            Subsystem: exporter,
+            Name: "check9045port_" + *wasInstance,
+            Help: "Check 9045 WAS console port",
+        })
+	prometheus.MustRegister(check9045port)
 		
 	check10000port := prometheus.NewGauge (
         prometheus.GaugeOpts {
@@ -114,7 +132,9 @@ func main() {
 	go func () {
 		for {
 			raw_connect("tcp", host, "1522", check1522port)
-			raw_connect("tcp", host, "9043", check9043port)
+            raw_connect("tcp", host, "9043", check9043port)
+            raw_connect("tcp", host, "9044", check9044port)
+            raw_connect("tcp", host, "9045", check9045port)
 			raw_connect("tcp", host, "10000", check10000port)
 			raw_connect("tcp", host, "10003", check10003port)
 			raw_connect("tcp", host, "10032", check10032port)
