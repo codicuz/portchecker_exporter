@@ -91,7 +91,16 @@ func main() {
             Name: "check8080port_" + *hostInstance,
             Help: "Check 8080 port",
         })
-	prometheus.MustRegister(check8080port)
+    prometheus.MustRegister(check8080port)
+    
+    check22port := prometheus.NewGauge (
+        prometheus.GaugeOpts {
+            Namespace: namespace,
+            Subsystem: exporter,
+            Name: "check22port_" + *hostInstance,
+            Help: "Check 22 port",
+        })
+	prometheus.MustRegister(check22port)
 	
 	go func () {
 		for {
