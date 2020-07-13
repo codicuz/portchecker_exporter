@@ -56,10 +56,50 @@ func main() {
             Help: "Check 80 port",
         })
 	prometheus.MustRegister(check80port)
+    
+    check8081port := prometheus.NewGauge (
+        prometheus.GaugeOpts {
+            Namespace: namespace,
+            Subsystem: exporter,
+            Name: "check8081port_" + *wasInstance,
+            Help: "Check 8081 port",
+        })
+	prometheus.MustRegister(check8081port)
+    
+    check8082port := prometheus.NewGauge (
+        prometheus.GaugeOpts {
+            Namespace: namespace,
+            Subsystem: exporter,
+            Name: "check8082port_" + *wasInstance,
+            Help: "Check 8082 port",
+        })
+	prometheus.MustRegister(check8082port)
+    
+    check10080port := prometheus.NewGauge (
+        prometheus.GaugeOpts {
+            Namespace: namespace,
+            Subsystem: exporter,
+            Name: "check10080port_" + *wasInstance,
+            Help: "Check 10080 port",
+        })
+	prometheus.MustRegister(check10080port)
+    
+    check8080port := prometheus.NewGauge (
+        prometheus.GaugeOpts {
+            Namespace: namespace,
+            Subsystem: exporter,
+            Name: "check8080port_" + *wasInstance,
+            Help: "Check 8080 port",
+        })
+	prometheus.MustRegister(check8080port)
 	
 	go func () {
 		for {
-			raw_connect("tcp", host, "80", check80port)
+            raw_connect("tcp", host, "80", check80port)
+            raw_connect("tcp", host, "8081", check8081port)
+            raw_connect("tcp", host, "8082", check8082port)
+            raw_connect("tcp", host, "10080", check10080port)
+            raw_connect("tcp", host, "8080", check8080port)
 			time.Sleep(globalsleep)
 		}
 	} ()
