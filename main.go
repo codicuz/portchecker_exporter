@@ -16,7 +16,7 @@ var (
 	version string = "1.0-dev"
     listenAddress       = flag.String("listen-address", getEnv("LISTEN_ADDRESS", ":9800"), "Address to listen on for web interface and telemetry. (env: LISTEN_ADDRESS)")
     metricPath          = flag.String("telemetry-path", getEnv("TELEMETRY_PATH", "/metrics"), "Path under which to expose metrics. (env: TELEMETRY_PATH)")
-	wasInstance         = flag.String("was-instance", getEnv("WAS_INSTANCE", "WAS_id"), "WAS identificator")
+	hostInstance         = flag.String("host-instance", getEnv("HOST_INSTANCE", "HOST_id"), "HOST identificator")
 )
 
 const (
@@ -52,7 +52,7 @@ func main() {
         prometheus.GaugeOpts {
             Namespace: namespace,
             Subsystem: exporter,
-            Name: "check80port_" + *wasInstance,
+            Name: "check80port_" + *hostInstance,
             Help: "Check 80 port",
         })
 	prometheus.MustRegister(check80port)
@@ -61,7 +61,7 @@ func main() {
         prometheus.GaugeOpts {
             Namespace: namespace,
             Subsystem: exporter,
-            Name: "check8081port_" + *wasInstance,
+            Name: "check8081port_" + *hostInstance,
             Help: "Check 8081 port",
         })
 	prometheus.MustRegister(check8081port)
@@ -70,7 +70,7 @@ func main() {
         prometheus.GaugeOpts {
             Namespace: namespace,
             Subsystem: exporter,
-            Name: "check8082port_" + *wasInstance,
+            Name: "check8082port_" + *hostInstance,
             Help: "Check 8082 port",
         })
 	prometheus.MustRegister(check8082port)
@@ -79,7 +79,7 @@ func main() {
         prometheus.GaugeOpts {
             Namespace: namespace,
             Subsystem: exporter,
-            Name: "check10080port_" + *wasInstance,
+            Name: "check10080port_" + *hostInstance,
             Help: "Check 10080 port",
         })
 	prometheus.MustRegister(check10080port)
@@ -88,7 +88,7 @@ func main() {
         prometheus.GaugeOpts {
             Namespace: namespace,
             Subsystem: exporter,
-            Name: "check8080port_" + *wasInstance,
+            Name: "check8080port_" + *hostInstance,
             Help: "Check 8080 port",
         })
 	prometheus.MustRegister(check8080port)
