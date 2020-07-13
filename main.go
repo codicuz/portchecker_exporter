@@ -109,6 +109,7 @@ func main() {
             raw_connect("tcp", host, "8082", check8082port)
             raw_connect("tcp", host, "10080", check10080port)
             raw_connect("tcp", host, "8080", check8080port)
+            raw_connect("tcp", host, "22", check22port)
 			time.Sleep(globalsleep)
 		}
 	} ()
