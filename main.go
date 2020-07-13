@@ -14,7 +14,7 @@ import (
 
 var (
 	version string = "1.0-dev"
-    listenAddress       = flag.String("listen-address", getEnv("LISTEN_ADDRESS", ":9800"), "Address to listen on for web interface and telemetry. (env: LISTEN_ADDRESS)")
+    listenAddress       = flag.String("listen-address", getEnv("LISTEN_ADDRESS", ":9900"), "Address to listen on for web interface and telemetry. (env: LISTEN_ADDRESS)")
     metricPath          = flag.String("telemetry-path", getEnv("TELEMETRY_PATH", "/metrics"), "Path under which to expose metrics. (env: TELEMETRY_PATH)")
 	hostInstance         = flag.String("host-instance", getEnv("HOST_INSTANCE", "HOST_id"), "HOST identificator")
 )
